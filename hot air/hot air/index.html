@@ -5,10 +5,25 @@
 <script src="./p5.play.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
-
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
   </head>
-  <body>
+  <body>]
       <script src="sketch.js"></script>
-  
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyAo9uVsZ-frsC2Fcj3eMcRkW90m79EK2nQ",
+          authDomain: "hot-air-fd40d.firebaseapp.com",
+          databaseURL: "https://hot-air-fd40d-default-rtdb.firebaseio.com",
+          projectId: "hot-air-fd40d",
+          storageBucket: "hot-air-fd40d.appspot.com",
+          messagingSenderId: "160153467009",
+          appId: "1:160153467009:web:f10c4b248b28146da6b580"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
 
-</body></html>
+</body>
+</html>
