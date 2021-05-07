@@ -1,7 +1,7 @@
 
 var bgImg;
 var hotAirBallon,hotAirBallonImg;
-var database,positions;
+var database,height;
 
 function preload(){
   hotAirBallonImg=loadAnimation("ballon1.png","ballon2.png","ballon3.png");
@@ -17,34 +17,40 @@ function setup() {
   hotAirBallon.scale=0.5;
 
   var hotAirBallonposition=database.ref('hotAirBallon/height');
-  hotAirBallonposition.on("value",showError)
+  hotAirBallonposition.on("value",readheight)
 }
 //readHeight
 function draw() {
   background(bgImg); 
   if(keyDown(LEFT_ARROW)){
-    // changePosition(-1,0);
-    hotAirBallon.x = hotAirBallon.x -10;
+    updateHeight(-1,0);
+    //hotAirBallon.x = hotAirBallon.x -10;
 }
 else if(keyDown(RIGHT_ARROW)){
-    // changePosition(1,0);
-    hotAirBallon.x = hotAirBallon.x +10;
+    updateHeight(1,0);
+    //hotAirBallon.x = hotAirBallon.x +10;
 }
 else if(keyDown(UP_ARROW)){
 
   hotAirBallon.addAnimation("ground",hotAirBallonImg);
   hotAirBallon.scale=hotAirBallon.scale -0.01;
-  hotAirBallon.y = hotAirBallon.y -10;
+  updateHeight(0,-1);
+  //hotAirBallon.y = hotAirBallon.y -10;
 }
 else if(keyDown(DOWN_ARROW)){
-    // changePosition(0,+1);
+    updateHeight(0,+1);
     hotAirBallon.addAnimation("ground",hotAirBallonImg);
     hotAirBallon.scale=hotAirBallon.scale +0.01;
 
-    hotAirBallon.y = hotAirBallon.y +10;
+    //hotAirBallon.y = hotAirBallon.y +10;
 
 }
   drawSprites();
+}
+function readheight(data){
+height = data.val()
+hotAirBallon.x = height.x;
+hotAirBallon.y = height.y;
 }
 function updateHeight(x,y){
 database.ref('hotAirBallon/height').set({
@@ -52,6 +58,3 @@ database.ref('hotAirBallon/height').set({
   'y' : height.y + y
 })}
 
-function showError(){
-console.log("error");
-}
